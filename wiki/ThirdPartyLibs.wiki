@@ -7,12 +7,14 @@ On this wiki you will receive an overview of used third-party libraries.
 
 = Libraries =
 
-Database:
+*Database:*
   * MyBatis
 
-JSF Frameworks:
+*JSF Frameworks:*
   * PrimeFaces
 
-Unit Testing:
-  * JUnit
+*Config Managment:*
+  * Apache Commons-Configuration
 
+*Unit Testing:*
+  * JUnit
