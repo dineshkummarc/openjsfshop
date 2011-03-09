@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.prime.com.tr/ui"
+        template="inc/template.xhtml">
+    <ui:define name="title">Installation Schritt 1</ui:define>
+
+    <ui:define name="content">
+        <h:form id="dataBaseForm">
+            <p:panel header="Datenbank Einstellungen">
+                <h:panelGrid columns="2" id="dataBaseSettings">
+                    <h:outputLabel value="DBMS:" for="txtDBMS"/>
+                    <p:inputText id="txtDBMS" value="" required="true"/>
+                    <h:outputLabel value="Hostname:" for="txtHostname"/>
+                    <p:inputText id="txtHostname" value="" required="true"/>
+                    <h:outputLabel value="Username:" for="txtUsername"/>
+                    <p:inputText id="txtUsername" value="" required="true"/>
+                    <h:outputLabel value="Passwort:" for="txtPassword"/>
+                    <p:inputText id="txtPassword" value="" required="true"/>
+                    <h:outputLabel value="Datenbank:" for="txtDataBase"/>
+                    <p:inputText id="txtDataBase" value="" required="true"/>
+
+                    <h:commandButton value="Zurücksetzen" type="reset"/>
+                    <h:commandButton value="Weiter" action=""/>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
