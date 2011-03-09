@@ -25,17 +25,23 @@
 
     <!-- Dependencies -->
     <dependencies>
+
+        <!-- JUnit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- PrimeFaces -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>2.2.1</version>
         </dependency>
+
+        <!-- JSF 2.0 with Mojarra -->
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-api</artifactId>
@@ -52,11 +58,21 @@
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Apache Commons-Configuration -->
         <dependency>
             <groupId>commons-configuration</groupId>
             <artifactId>commons-configuration</artifactId>
             <version>1.6</version>
         </dependency>
+
+        <!-- MySQL JDBC Connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.14</version>
+        </dependency>
+
     </dependencies>
 
     <build>
