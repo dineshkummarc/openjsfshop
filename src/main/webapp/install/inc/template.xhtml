@@ -10,14 +10,18 @@
 </h:head>
 <h:body>
     <!-- Root Container -->
-    <div id="mainContainer" style="margin-top: 95px;">
-        <div id="contentBox">
-            <!--Site Content-->
-            <ui:insert name="content"/>
+    <f:view locale="#{sessionBean.locale}">
+        <f:loadBundle basename="com.openshop.locale.Locale" var="msg"/>
+
+        <div id="mainContainer" style="margin-top: 95px;">
+            <div id="contentBox">
+                <!--Site Content-->
+                <ui:insert name="content"/>
+            </div>
         </div>
-    </div>
-    <div style="padding: 5px; float: right;" class="smallfont">
-        <h:messages globalOnly="true"/>
-    </div>
+        <div style="padding: 5px; float: right;" class="smallfont">
+            <h:messages globalOnly="true"/>
+        </div>
+    </f:view>
 </h:body>
 </html>
