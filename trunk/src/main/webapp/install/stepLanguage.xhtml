@@ -10,16 +10,19 @@
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.prime.com.tr/ui"
         template="inc/template.xhtml">
-    <ui:define name="title">Installation Schritt 1</ui:define>
+    <ui:define name="title">#{msg.installStepOne}</ui:define>
 
     <ui:define name="content">
-        <h:form id="dataBaseForm">
-            <p:panel header="Sprache">
-                <h:panelGrid columns="2" id="dataBaseSettings">
-                    <h:outputLabel value="#{msg.language}" for="txtDBMS"/>
-                    <p:inputText id="txtDBMS" value="" required="true"/>
-
-                    <h:link value="Weiter" outcome="stepDatabase"/>
+        <h:form id="languageForm">
+            <p:panel header="#{msg.language}">
+                <h:panelGrid columns="2" id="languageSettings">
+                    <h:outputLabel value="#{msg.language}" for="txtLanguage"/>
+                    <h:selectOneMenu id="txtLanguage" value="#{installController.settings.languageSelection}"
+                                     required="true">
+                        <f:selectItem itemValue="en" itemLabel="English"/>
+                        <f:selectItem itemValue="de" itemLabel="Deutsch"/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="#{msg.continue}" action="#{installController.setLanguage}"/>
                 </h:panelGrid>
             </p:panel>
         </h:form>
