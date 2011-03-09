@@ -10,25 +10,25 @@
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.prime.com.tr/ui"
         template="inc/template.xhtml">
-    <ui:define name="title">Installation Schritt 1</ui:define>
+    <ui:define name="title">Installation Schritt 2</ui:define>
 
     <ui:define name="content">
         <h:form id="dataBaseForm">
-            <p:panel header="Datenbank Einstellungen">
+            <p:panel header="#{msg.installDatabaseHeader}">
                 <h:panelGrid columns="2" id="dataBaseSettings">
-                    <h:outputLabel value="DBMS:" for="txtDBMS"/>
+                    <h:outputLabel value="#{msg.dbms}" for="txtDBMS"/>
                     <p:inputText id="txtDBMS" value="" required="true"/>
-                    <h:outputLabel value="Hostname:" for="txtHostname"/>
+                    <h:outputLabel value="#{msg.databaseHostname}" for="txtHostname"/>
                     <p:inputText id="txtHostname" value="" required="true"/>
-                    <h:outputLabel value="Username:" for="txtUsername"/>
+                    <h:outputLabel value="#{msg.databaseUsername}" for="txtUsername"/>
                     <p:inputText id="txtUsername" value="" required="true"/>
-                    <h:outputLabel value="Passwort:" for="txtPassword"/>
+                    <h:outputLabel value="#{msg.databasePassword}" for="txtPassword"/>
                     <p:inputText id="txtPassword" value="" required="true"/>
-                    <h:outputLabel value="Datenbank:" for="txtDataBase"/>
+                    <h:outputLabel value="#{msg.databaseSchema}" for="txtDataBase"/>
                     <p:inputText id="txtDataBase" value="" required="true"/>
 
                     <h:commandButton value="Zurücksetzen" type="reset"/>
-                    <h:commandButton value="Weiter" action=""/>
+                    <h:commandButton value="Weiter" action="stepDatabase"/>
                 </h:panelGrid>
             </p:panel>
         </h:form>
