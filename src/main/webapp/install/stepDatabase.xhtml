@@ -17,18 +17,18 @@
             <p:panel header="#{msg.installDatabaseHeader}">
                 <h:panelGrid columns="2" id="dataBaseSettings">
                     <h:outputLabel value="#{msg.dbms}" for="txtDBMS"/>
-                    <p:inputText id="txtDBMS" value="" required="true"/>
+                    <p:inputText id="txtDBMS" value="#{installController.settings.dbDBMS}" required="true"/>
                     <h:outputLabel value="#{msg.databaseHostname}" for="txtHostname"/>
-                    <p:inputText id="txtHostname" value="" required="true"/>
+                    <p:inputText id="txtHostname" value="#{installController.settings.dbHostname}" required="true"/>
                     <h:outputLabel value="#{msg.databaseUsername}" for="txtUsername"/>
-                    <p:inputText id="txtUsername" value="" required="true"/>
+                    <p:inputText id="txtUsername" value="#{installController.settings.dbUsername}" required="true"/>
                     <h:outputLabel value="#{msg.databasePassword}" for="txtPassword"/>
-                    <p:inputText id="txtPassword" value="" required="true"/>
+                    <p:inputText id="txtPassword" value="#{installController.settings.dbPassword}" required="true"/>
                     <h:outputLabel value="#{msg.databaseSchema}" for="txtDataBase"/>
-                    <p:inputText id="txtDataBase" value="" required="true"/>
+                    <p:inputText id="txtDataBase" value="#{installController.settings.dbSchema}" required="true"/>
 
                     <h:commandButton value="#{msg.reset}" type="reset"/>
-                    <h:commandButton value="#{msg.continue}" action="stepDatabase"/>
+                    <h:commandButton value="#{msg.continue}" action="#{installController.setDatabase}"/>
                 </h:panelGrid>
             </p:panel>
         </h:form>
