@@ -17,7 +17,8 @@
             <p:panel header="#{msg.installDatabaseHeader}">
                 <h:panelGrid columns="2" id="dataBaseSettings">
                     <h:outputLabel value="#{msg.dbms}" for="txtDBMS"/>
-                    <p:inputText id="txtDBMS" value="#{installController.settings.dbDBMS}" required="true"/>
+                    <p:inputText id="txtDBMS" value="#{installController.settings.dbDBMS}" disabled="true"
+                                 required="true"/>
                     <h:outputLabel value="#{msg.databaseHostname}" for="txtHostname"/>
                     <p:inputText id="txtHostname" value="#{installController.settings.dbHostname}" required="true"/>
                     <h:outputLabel value="#{msg.databaseUsername}" for="txtUsername"/>
