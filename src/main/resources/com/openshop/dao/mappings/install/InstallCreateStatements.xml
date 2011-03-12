@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.openshop.dao.mappings.install.InstallCreateStatements">
+
+    <insert id="createArticles">
+        CREATE  TABLE IF NOT EXISTS articles (
+          id INT(11) NOT NULL AUTO_INCREMENT ,
+          title TEXT NOT NULL ,
+          content LONGTEXT NOT NULL ,
+          category INT(11) NOT NULL ,
+          itemnumber TEXT NOT NULL ,
+          price FLOAT NOT NULL ,
+          date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+          comments TINYINT(1)  NOT NULL ,
+          visible TINYINT(1)  NOT NULL ,
+          isContent TINYINT(1)  NOT NULL ,
+          PRIMARY KEY (`id`) )
+        ENGINE = MyISAM
+        AUTO_INCREMENT = 1
+        DEFAULT CHARACTER SET = latin1;
+    </insert>
+
+</mapper>

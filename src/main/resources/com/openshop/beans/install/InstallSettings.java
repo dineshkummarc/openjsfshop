@@ -4,11 +4,15 @@ package com.openshop.beans.install;
 public class InstallSettings {
 
     private String languageSelection;
+
     private String dbHostname;
     private String dbUsername;
     private String dbPassword;
     private String dbDBMS;
     private String dbSchema;
+
+    private String adminUser;
+    private String adminPassword;
 
     public InstallSettings() {
     }
@@ -59,5 +63,21 @@ public class InstallSettings {
 
     public void setDbSchema(String dbSchema) {
         this.dbSchema = dbSchema;
+    }
+
+    public String getAdminUser() {
+        return adminUser;
+    }
+
+    public void setAdminUser(String adminUser) {
+        this.adminUser = adminUser;
+    }
+
+    public String getAdminPassword() {
+        return adminPassword;
+    }
+
+    public void setAdminPassword(String adminPassword) {
+        this.adminPassword = adminPassword;
     }
 }
