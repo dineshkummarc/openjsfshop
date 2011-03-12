@@ -16,13 +16,13 @@
         <h:form id="dataBaseForm">
             <p:panel header="#{msg.installAdministrator}">
                 <h:panelGrid columns="2" id="administratorSettings">
-                    <h:outputLabel value="#{msg.dbms}" for="txtAdminUser"/>
-                    <p:inputText id="txtAdminUser" value="#{installController.settings.dbDBMS}" required="true"/>
-                    <h:outputLabel value="#{msg.databaseHostname}" for="txtAdminPass"/>
-                    <p:inputText id="txtAdminPass" value="#{installController.settings.dbHostname}" required="true"/>
+                    <h:outputLabel value="#{msg.adminUser}" for="txtAdminUser"/>
+                    <p:inputText id="txtAdminUser" value="#{installController.settings.adminUser}" required="true"/>
+                    <h:outputLabel value="#{msg.adminPassword}" for="txtAdminPass"/>
+                    <p:inputText id="txtAdminPass" value="#{installController.settings.adminPassword}" required="true"/>
 
                     <h:commandButton value="#{msg.reset}" type="reset"/>
-                    <h:commandButton value="#{msg.continue}" action="#{installController.setDatabase}"/>
+                    <h:commandButton value="#{msg.continue}" action="#{installController.setAdministrator}"/>
                 </h:panelGrid>
             </p:panel>
         </h:form>
