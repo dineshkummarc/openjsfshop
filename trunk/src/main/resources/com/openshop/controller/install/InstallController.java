@@ -72,7 +72,6 @@ public class InstallController {
 
         try {
             config.save();
-            System.out.println("DB Passwort: " + config.getString("database.password"));
         } catch (ConfigurationException e) {
             e.printStackTrace();  //todo: Exception Handling
         }
