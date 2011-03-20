@@ -86,6 +86,11 @@ public class InstallController {
 
                 //Start Creating Tables
                 session.insert("createArticles");
+                session.insert("createArticleComments");
+                session.insert("createArticleProperties");
+                session.insert("createCategories");
+                session.insert("createUsers");
+                session.insert("createProperties");
                 session.commit(true);
 
 
