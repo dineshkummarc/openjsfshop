@@ -28,6 +28,9 @@ public class InstallController {
 
     private SqlSession session;
 
+    /**
+     * Constructor
+     */
     public InstallController() {
 
         try {
@@ -41,6 +44,11 @@ public class InstallController {
 
     }
 
+    /**
+     * Writes selected Language to config.properties
+     *
+     * @return redirects to next site
+     */
     public String setLanguage() {
 
         try {
@@ -55,6 +63,11 @@ public class InstallController {
         return "stepDatabase";
     }
 
+    /**
+     * Checks, Writes and Create needed Database Tables
+     *
+     * @return redirect to next site
+     */
     public String setDatabase() {
 
         if (!getSettings().getDbHostname().equals("")) {
@@ -106,10 +119,18 @@ public class InstallController {
         return null;
     }
 
+    /**
+     * Set up a Administrator
+     *
+     * @return redirect to next site
+     */
     public String setAdministrator() {
         return "stepComplete";
     }
 
+    /**
+     * Reads out config.properties to InstallSettings Bean
+     */
     private void setDefaultInstallSettings() {
 
         getSettings().setDbDBMS(config.getString("database.dbms"));
@@ -120,6 +141,11 @@ public class InstallController {
 
     }
 
+    /**
+     * Checks Database Data entered by User
+     *
+     * @return boolean Successful or not
+     */
     private boolean checkDatabaseConnection() {
 
         Connection conn = null;
@@ -145,6 +171,34 @@ public class InstallController {
         return true;
     }
 
+    /**
+     * External Database Connection Check with Database Data from config.properties
+     *
+     * @return boolean Successful or not
+     */
+    public boolean checkInstallation() {
+
+        boolean returnValue = false;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection("jdbc:mysql://" + config.getString("database.hostname") + ":3306/" + config.getString("database.schema"), config.getString("database.username"), config.getString("database.password"));
+
+            if (conn != null) {
+                returnValue = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); //todo: Exception Handling
+        }
+
+        return returnValue;
+    }
+
+    /**
+     * Getter
+     *
+     * @return InstallSettings Bean
+     */
     public InstallSettings getSettings() {
         return settings;
     }
