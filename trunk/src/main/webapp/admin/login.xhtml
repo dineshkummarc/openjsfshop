@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.prime.com.tr/ui"
+        template="inc/template.xhtml">
+    <ui:define name="title">#{msg.adminLogin}</ui:define>
+
+    <ui:define name="content">
+        <div id="loginBox">
+            <h:form id="loginForm">
+                <p:panel>
+                    <h:panelGrid columns="1">
+                        <p:messages display="text"/>
+                        <h:outputLabel for="userName" value="#{msg.username}:"/>
+                        <p:watermark for="userName" value="#{msg.username}..."/>
+                        <p:inputText id="userName" value=""/>
+                        <h:outputLabel for="passWord" value="#{msg.password}:"/>
+                        <p:watermark value="#{msg.password}..." for="passWord"/>
+                        <p:inputText id="passWord" value=""/>
+                        <p:commandButton value="#{msg.login}" action="#{loginController.buttonLogIn}"/>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
