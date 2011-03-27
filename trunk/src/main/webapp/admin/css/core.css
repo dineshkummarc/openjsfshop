@@ -1,0 +1,22 @@
+#mainContainer {
+    width: 1000px;
+    margin: auto;
+    padding: 10px;
+}
+
+#mainContainer #loginBox {
+    width: 500px;
+    margin: auto;
+}
+
+#mainContainer #contentBox {
+    width: 810px;
+    float: right;
+}
+
+#menuBox {
+    width: 100px;
+    float: left;
+    clear: left;
+
+}
