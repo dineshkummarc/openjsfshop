@@ -15,7 +15,7 @@
     <ui:define name="content">
         <div id="loginBox">
             <h:form id="loginForm">
-                <p:panel>
+                <p:fieldset legend="#{msg.adminLogin}">
                     <h:panelGrid columns="1">
                         <p:messages display="text"/>
                         <h:outputLabel for="userName" value="#{msg.username}:"/>
@@ -23,10 +23,10 @@
                         <p:inputText id="userName" value=""/>
                         <h:outputLabel for="passWord" value="#{msg.password}:"/>
                         <p:watermark value="#{msg.password}..." for="passWord"/>
-                        <p:inputText id="passWord" value=""/>
+                        <p:password id="passWord" value="" feedback="false" minLength="4"/>
                         <p:commandButton value="#{msg.login}" action="#{loginController.buttonLogIn}"/>
                     </h:panelGrid>
-                </p:panel>
+                </p:fieldset>
             </h:form>
         </div>
     </ui:define>

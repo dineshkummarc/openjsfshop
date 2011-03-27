@@ -7,6 +7,7 @@
       xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.prime.com.tr/ui">
 <h:head>
     <title><ui:insert name="title">OpenJSFShop</ui:insert></title>
+    <link rel="stylesheet" href="css/core.css"/>
 </h:head>
 <h:body>
     <!-- Root Container -->
@@ -14,6 +15,8 @@
         <f:loadBundle basename="com.openshop.locale.Locale" var="msg"/>
 
         <div id="mainContainer" style="margin-top: 95px;">
+            <ui:include src="left.xhtml"/>
+
             <div id="contentBox">
                 <!--Site Content-->
                 <ui:insert name="content"/>
