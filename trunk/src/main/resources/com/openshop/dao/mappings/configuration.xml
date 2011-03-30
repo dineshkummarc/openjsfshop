@@ -7,14 +7,15 @@
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <property name="driver" value="${database.driver}"/>
-                <property name="url" value="jdbc:mysql://${database.hostname}:3306/${database.schema}"/>
-                <property name="username" value="${database.username}"/>
-                <property name="password" value="${database.password}"/>
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://sharea.de:3306/openjsfshop"/>
+                <property name="username" value="openjsfshop"/>
+                <property name="password" value="start123"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
         <mapper resource="com/openshop/dao/mappings/install/InstallCreateStatements.xml"/>
+        <mapper resource="com/openshop/dao/mappings/admincp/login.xml"/>
     </mappers>
 </configuration>
