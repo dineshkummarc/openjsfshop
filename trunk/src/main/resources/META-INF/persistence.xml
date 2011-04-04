@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="openjsfdb" transaction-type="RESOURCE_LOCAL">
+        <class>com.openshop.entities.UserBean</class>
+        <class>com.openshop.entities.ArticleBean</class>
+        <class>com.openshop.entities.ArticleProperty</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://sharea.de:3306/openjsfshop"/>
+            <property name="hibernate.connection.username" value="openjsfshop"/>
+            <property name="hibernate.connection.password" value="start123"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

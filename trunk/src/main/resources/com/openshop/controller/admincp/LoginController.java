@@ -1,42 +1,30 @@
 package com.openshop.controller.admincp;
 
-import com.openshop.beans.UserBean;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import com.openshop.entities.UserBean;
+import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
-import java.io.Reader;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 @ManagedBean
 public class LoginController {
 
-    private SqlSession session;
+    private Logger logger = Logger.getLogger(LoginController.class);
+
+    private EntityManagerFactory emf;
+    private EntityManager em;
+    private String PERSISTENCE_UNIT_NAME = "openjsfdb";
 
     /**
      * Constructor
      */
     public LoginController() {
 
-    }
-
-    /**
-     * Connects to Database
-     */
-    public void startConnection() {
-
-        try {
-
-            Reader reader = Resources.getResourceAsReader("com/openshop/dao/mappings/configuration.xml");
-            SqlSessionFactory mapClient = new SqlSessionFactoryBuilder().build(reader);
-
-            session = mapClient.openSession();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        em = emf.createEntityManager();
 
     }
 
@@ -64,16 +52,13 @@ public class LoginController {
      */
     public boolean checkLogin(String email, String password) {
 
-        Integer exists;
+        Query emQuery = em.createQuery("select u from UserBean u where u.email = :email and u.password = MD5(:password)");
+        emQuery.setParameter("email", email);
+        emQuery.setParameter("password", password);
 
-        try {
-            startConnection();
-            exists = (Integer) session.selectOne("checkAdminLogin", new UserBean(email, password));
-        } finally {
-            session.close();
-        }
+        UserBean user = (UserBean) emQuery.getSingleResult();
 
-        return (exists != 0);
+        return (user.getEmail().equals(email));
     }
 
 }
