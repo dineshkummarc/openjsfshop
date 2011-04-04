@@ -1,18 +1,29 @@
 package controller;
 
 
-import com.openshop.beans.UserLevel;
 import com.openshop.controller.admincp.LoginController;
+import com.openshop.entities.UserBean;
+import com.openshop.util.MD5;
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import static junit.framework.Assert.assertTrue;
 
 public class LoginControllerTest {
 
+    Logger logger = Logger.getLogger(LoginControllerTest.class);
+
     LoginController login = new LoginController();
-    TestHelper testHelper = new TestHelper();
+
+    private EntityManagerFactory emf;
+    private EntityManager em;
+    private String PERSISTENCE_UNIT_NAME = "openjsfdb";
 
     /**
      * Inserts test Administrator to Database
@@ -20,10 +31,14 @@ public class LoginControllerTest {
     @Before
     public void insertTestData() {
 
-        testHelper.connect();
+        logger.debug("Init LoginControllerTest");
+        emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        em = emf.createEntityManager();
 
-        final String insertStatement = "INSERT INTO user (level, email, password, prename, surname, street, streetNumber, place, country) VALUES (" + UserLevel.ADMIN.getLevel() + ", 'developer@sharea.de', MD5('test'), 'Developer', 'Account', '', 0, 'IDE', 'Java')";
-        testHelper.execute(insertStatement);
+        em.getTransaction().begin();
+        em.persist(new UserBean("developer@sharea.de", MD5.makeMD5("test")));
+        em.getTransaction().commit();
+
     }
 
     /**
@@ -42,8 +57,11 @@ public class LoginControllerTest {
     @After
     public void removeTestData() {
 
-        testHelper.execute("DELETE FROM user WHERE email = 'developer@sharea.de'");
-        testHelper.disconnect();
+        em.getTransaction().begin();
+        em.remove(new UserBean("developer@sharea.de", MD5.makeMD5("test")));
+        em.getTransaction().commit();
+
+        em.close();
 
     }
 }

@@ -1,6 +1,19 @@
-package com.openshop.beans;
+package com.openshop.entities;
 
+import com.openshop.beans.UserLevel;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class UserBean {
+
+    @Id
+    @GeneratedValue
+    private long id;
 
     private String email;
     private String password;
@@ -8,6 +21,8 @@ public class UserBean {
     private String surname;
     private String street;
     private Integer streetNumber;
+    private String place;
+    private String country;
     private UserLevel level;
 
     public UserBean() {
