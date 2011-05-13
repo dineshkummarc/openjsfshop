@@ -12,6 +12,7 @@ public class ArticleProperty {
 
     private String value1;
     private String value2;
+    private Double specialPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private ArticleBean property;
@@ -50,6 +51,14 @@ public class ArticleProperty {
 
     public void setValue2(String value2) {
         this.value2 = value2;
+    }
+
+    public Double getSpecialPrice() {
+        return specialPrice;
+    }
+
+    public void setSpecialPrice(Double specialPrice) {
+        this.specialPrice = specialPrice;
     }
 
     public ArticleBean getProperty() {

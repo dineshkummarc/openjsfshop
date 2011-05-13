@@ -3,6 +3,8 @@ package com.openshop.beans;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -13,6 +15,7 @@ import java.util.Locale;
 @SessionScoped
 public class SessionBean {
 
+    private Logger logger = LoggerFactory.getLogger(SessionBean.class);
     private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
     private PropertiesConfiguration config;
 
@@ -26,7 +29,7 @@ public class SessionBean {
             setLanguage(language);
 
         } catch (ConfigurationException e) {
-            e.printStackTrace(); //todo: Exception Handling
+            logger.error(e.getMessage());
         }
 
     }
