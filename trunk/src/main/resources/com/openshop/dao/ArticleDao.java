@@ -14,10 +14,7 @@ import com.openshop.entities.ArticleProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -121,7 +118,7 @@ public class ArticleDao implements IDatabaseController {
 
         logger.debug("Get EntityManager");
         EntityManager em = startConnection();
-        ArticleBean article;
+        ArticleBean article = null;
         try {
             logger.debug("Create Query and select");
             Query articleQuery = em.createQuery("select a from ArticleBean a where a.articleNumber = :articleNumber");
@@ -130,6 +127,8 @@ public class ArticleDao implements IDatabaseController {
 
             logger.debug("Read out: " + article.getTitle() + " with " + article.getProperties().toString());
 
+        } catch (NoResultException e) {
+            logger.info("No Article were found");
         } finally {
             logger.debug("Close EntityManager");
             em.close();
@@ -191,6 +190,37 @@ public class ArticleDao implements IDatabaseController {
             logger.debug("Commit Transaction");
             em.getTransaction().commit();
 
+        } finally {
+            logger.debug("Close EntityManager");
+            em.close();
+        }
+
+    }
+
+    /**
+     * Removes Article from Database
+     *
+     * @param bean Article to Remove
+     */
+    public void removeArticle(ArticleBean bean) {
+
+        logger.debug("Get Entity Manager");
+        EntityManager em = startConnection();
+
+        try {
+            em.getTransaction().begin();
+
+            logger.debug("Get ArticleBean to remove");
+            ArticleBean articleBean = em.merge(bean);
+
+            logger.debug("Remove all Article Properties from Database");
+            for (ArticleProperty property : articleBean.getProperties()) {
+                em.remove(property);
+            }
+
+            logger.debug("Remove Article from Database");
+            em.remove(articleBean);
+            em.getTransaction().commit();
         } finally {
             logger.debug("Close EntityManager");
             em.close();
