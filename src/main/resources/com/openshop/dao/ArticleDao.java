@@ -95,6 +95,7 @@ public class ArticleDao implements IDatabaseController {
             }
 
             articles = (List<ArticleBean>) articleQuery.getResultList();
+            logger.debug("Selected Articles: " + articles.size());
 
             for (ArticleBean article : articles) {
                 logger.debug("Read out: " + article.getTitle() + " with " + article.getProperties().toString());
@@ -255,5 +256,26 @@ public class ArticleDao implements IDatabaseController {
             em.close();
         }
 
+    }
+
+    public Long countArticlesBySearchBean(ArticleSearchBean searchBean) {
+
+        logger.debug("Get Entity Manager");
+        EntityManager em = startConnection();
+
+        Long count;
+
+        try {
+            Query query = em.createQuery("select count(a) from ArticleBean a where (:articleNumber is null or a.articleNumber = :articleNumber) and (:articleTitle is null or a.title = :articleTitle)");
+            query.setParameter("articleNumber", searchBean.getTxtArticleNumber());
+            query.setParameter("articleTitle", searchBean.getTxtArticleTitle());
+
+            count = (Long) query.getSingleResult();
+        } finally {
+            logger.debug("Close EntityManager");
+            em.close();
+        }
+
+        return count;
     }
 }

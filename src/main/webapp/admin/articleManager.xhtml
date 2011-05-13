@@ -19,9 +19,9 @@
             <!-- Filters -->
             <h:form id="articleSearchFilter">
                 <p:watermark value="Article Number" for="txtArticleNumber"/>
-                <p:inputText id="txtArticleNumber" value="#{articleController.searchBean.txtArticleNumber}"/>
+                <h:inputText id="txtArticleNumber" value="#{articleController.searchBean.txtArticleNumber}"/>
                 <p:watermark value="Article Title" for="txtArticleTitle"/>
-                <p:inputText id="txtArticleTitle" value="#{articleController.searchBean.txtArticleTitle}"/>
+                <h:inputText id="txtArticleTitle" value="#{articleController.searchBean.txtArticleTitle}"/>
                 <p:commandButton value="Search" action="#{articleController.searchArticles}" update=":articleForm"/>
                 <p:commandButton value="Reset" action="#{articleController.resetFilter}" update="@form :articleForm"/>
             </h:form>
@@ -34,7 +34,7 @@
                              dynamic="true"
                              paginator="true"
                              paginatorPosition="bottom"
-                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                              rows="10">
                     <p:column headerText="Article Number">
                         <h:outputText value="#{articleData.articleNumber}"/>

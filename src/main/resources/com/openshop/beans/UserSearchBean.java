@@ -16,8 +16,12 @@ public class UserSearchBean {
 
     }
 
+    private boolean isNotNullOrEmpty(Object obj) {
+        return (obj != null && !obj.equals(""));
+    }
+
     public String geteMail() {
-        return eMail;
+        return (isNotNullOrEmpty(eMail)) ? eMail : null;
     }
 
     public void seteMail(String eMail) {
@@ -25,7 +29,7 @@ public class UserSearchBean {
     }
 
     public String getPrename() {
-        return prename;
+        return (isNotNullOrEmpty(prename)) ? prename : null;
     }
 
     public void setPrename(String prename) {
@@ -33,7 +37,7 @@ public class UserSearchBean {
     }
 
     public String getSurname() {
-        return surname;
+        return (isNotNullOrEmpty(surname)) ? surname : null;
     }
 
     public void setSurname(String surname) {

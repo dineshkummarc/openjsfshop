@@ -8,14 +8,14 @@ import org.primefaces.model.LazyDataModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ArticleController {
 
     private Logger logger = LoggerFactory.getLogger(ArticleController.class);
@@ -65,6 +65,8 @@ public class ArticleController {
                 searchBean.setFirstPage(first);
                 searchBean.setPageSize(pageSize);
 
+                logger.debug("SearchBean Content: " + searchBean.toString());
+
                 List<ArticleBean> articles = new ArrayList<ArticleBean>();
 
                 articles = articleDao.getArticlesList(searchBean);
@@ -73,6 +75,8 @@ public class ArticleController {
             }
 
         };
+
+        articleTable.setRowCount(articleDao.countArticlesBySearchBean(searchBean).intValue());
 
     }
 
