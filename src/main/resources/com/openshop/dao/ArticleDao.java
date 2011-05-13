@@ -227,4 +227,33 @@ public class ArticleDao implements IDatabaseController {
         }
 
     }
+
+    /**
+     * Updates given ArticleBean
+     *
+     * @param bean ArticleBean
+     */
+    public void updateArticle(ArticleBean bean) {
+        logger.debug("Get Entity Manager");
+        EntityManager em = startConnection();
+
+        try {
+            em.getTransaction().begin();
+
+            logger.debug("Get ArticleBean to update");
+            ArticleBean articleBean = em.merge(bean);
+
+            logger.debug("Update all Article Properties");
+            for (ArticleProperty property : articleBean.getProperties()) {
+                em.merge(property);
+            }
+
+            logger.debug("Update Article");
+            em.getTransaction().commit();
+        } finally {
+            logger.debug("Close EntityManager");
+            em.close();
+        }
+
+    }
 }
