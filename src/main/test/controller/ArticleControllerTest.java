@@ -70,4 +70,13 @@ public class ArticleControllerTest {
         assertTrue(article.getTitle().equals("Sneakers Shoes"));
     }
 
+    @Test
+    public void removeArticleByBean() {
+        ArticleBean article = articleDao.getArticleByArticleNumber(2341L);
+        articleDao.removeArticle(article);
+
+        article = articleDao.getArticleByArticleNumber(2341L);
+        assertTrue(article == null);
+    }
+
 }
