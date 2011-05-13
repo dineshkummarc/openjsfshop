@@ -18,7 +18,7 @@ public class ArticleSearchBean {
     }
 
     public Long getTxtArticleNumber() {
-        return txtArticleNumber;
+        return (txtArticleNumber != null && txtArticleNumber != 0) ? txtArticleNumber : null;
     }
 
     public void setTxtArticleNumber(Long txtArticleNumber) {
@@ -26,7 +26,7 @@ public class ArticleSearchBean {
     }
 
     public String getTxtArticleTitle() {
-        return txtArticleTitle;
+        return (txtArticleTitle != null && !txtArticleTitle.equals("")) ? txtArticleTitle : null;
     }
 
     public void setTxtArticleTitle(String txtArticleTitle) {
@@ -47,5 +47,15 @@ public class ArticleSearchBean {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    @Override
+    public String toString() {
+        return "ArticleSearchBean{" +
+                "txtArticleNumber=" + txtArticleNumber +
+                ", txtArticleTitle='" + txtArticleTitle + '\'' +
+                ", firstPage=" + firstPage +
+                ", pageSize=" + pageSize +
+                '}';
     }
 }
