@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.prime.com.tr/ui"
+        template="inc/template.xhtml">
+    <ui:define name="title">#{msg.articleManagerTitle}</ui:define>
+
+    <ui:define name="content">
+        <div id="articleBox">
+            <h1>Article Overview</h1>
+
+            <!-- Filters -->
+            <h:form id="articleSearchFilter">
+                <p:watermark value="Article Number" for="txtArticleNumber"/>
+                <p:inputText id="txtArticleNumber" value="#{articleController.searchBean.txtArticleNumber}"/>
+                <p:watermark value="Article Title" for="txtArticleTitle"/>
+                <p:inputText id="txtArticleTitle" value="#{articleController.searchBean.txtArticleTitle}"/>
+                <p:commandButton value="Search" action="#{articleController.searchArticles}" update=":articleForm"/>
+                <p:commandButton value="Reset" action="#{articleController.resetFilter}" update="@form :articleForm"/>
+            </h:form>
+
+            <!-- Article Table -->
+            <br/>
+            <h:form id="articleForm">
+                <p:dataTable var="articleData" value="#{articleController.articleTable}"
+                             lazy="true"
+                             dynamic="true"
+                             paginator="true"
+                             paginatorPosition="bottom"
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             rows="10">
+                    <p:column headerText="Article Number">
+                        <h:outputText value="#{articleData.articleNumber}"/>
+                    </p:column>
+                    <p:column headerText="Article Title">
+                        <h:outputText value="#{articleData.title}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+
+            <h:form>
+                <p:commandLink value="Add new Article" action="#{articleController.addNewArticle}"/>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
