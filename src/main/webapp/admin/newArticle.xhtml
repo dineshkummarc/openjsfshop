@@ -17,6 +17,8 @@
             <h1>Add New Article</h1>
 
             <h:form id="newArticleForm">
+                <h:messages globalOnly="true"/>
+
                 <h:outputText value="Article Number:"/>
                 <h:inputText value="#{newArticleController.newArticle.articleNumber}"/>
                 <h:outputText value="Article Title:"/>
@@ -25,9 +27,9 @@
                 <h:inputTextarea value="#{newArticleController.newArticle.description}"/>
                 <br/><br/>
                 <h:outputText value="Article Price:"/>
-                <h:inputText/>
+                <h:inputText value="#{newArticleController.newArticle.price}"/>
                 <h:outputText value="Article Amount: "/>
-                <h:inputText/>
+                <h:inputText value="#{newArticleController.newArticle.amount}"/>
 
                 <br/>
                 <br/>
@@ -36,18 +38,23 @@
                 <div id="addProperties">
                     <p:commandLink value="Add Property" update="propertyTable"
                                    action="#{newArticleController.newProperty}"/>
-                    <p:dataTable id="propertyTable" value="#{newArticleController.newArticle.properties}" var="data">
+                    <p:dataTable id="propertyTable" value="#{newArticleController.newProperties}" var="data"
+                                 emptyMessage="Click Add Property to Create new Property">
                         <p:column headerText="Property Type">
                             <h:inputText value="#{data.value1}"/>
                         </p:column>
                         <p:column headerText="Property Value">
                             <h:inputText value="#{data.value2}"/>
                         </p:column>
+                        <p:column headerText="Special Price">
+                            <h:inputText value="#{data.specialPrice}"/>
+                        </p:column>
                     </p:dataTable>
                 </div>
 
                 <!-- Add Article -->
                 <p:commandButton value="Add Article" action="#{newArticleController.addArticle}"/>
+                <p:commandButton value="Reset" update="@form" action="#{newArticleController.resetNewArticle}"/>
             </h:form>
         </div>
     </ui:define>
