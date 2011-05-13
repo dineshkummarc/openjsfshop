@@ -71,6 +71,18 @@ public class ArticleControllerTest {
     }
 
     @Test
+    public void updateArticleByBean() {
+        ArticleBean article = articleDao.getArticleByArticleNumber(1234L);
+        article.setTitle("Changed Coffee Cup");
+
+        articleDao.updateArticle(article);
+
+        article = articleDao.getArticleByArticleNumber(1234L);
+        assertTrue(article.getTitle().equals("Changed Coffee Cup"));
+
+    }
+
+    @Test
     public void removeArticleByBean() {
         ArticleBean article = articleDao.getArticleByArticleNumber(2341L);
         articleDao.removeArticle(article);
