@@ -1,43 +1,43 @@
 package com.openshop.controller.admincp;
 
+import com.openshop.dao.ArticleDao;
 import com.openshop.entities.ArticleBean;
-import org.apache.log4j.Logger;
+import com.openshop.entities.ArticleProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.faces.bean.ManagedBean;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
+@SessionScoped
 public class NewArticleController {
 
-    private Logger logger = Logger.getLogger(NewArticleController.class);
+    private Logger logger = LoggerFactory.getLogger(NewArticleController.class);
+    private ArticleDao articleDao;
 
-    private EntityManagerFactory emf;
-    private EntityManager em;
-    private String PERSISTENCE_UNIT_NAME = "openjsfdb";
-
-    private ArticleBean selectedArticle;
+    private ArticleBean newArticle;
 
     /**
      * Constructor
      */
     public NewArticleController() {
-
-        logger.debug("Init NewArticleController");
-
-        emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        em = emf.createEntityManager();
-
+        articleDao = new ArticleDao();
+        newArticle = new ArticleBean();
     }
 
-    private void updateArticle() {
+    public String newProperty() {
 
-        em.getTransaction().begin();
-        em.merge(this.selectedArticle);
-        em.getTransaction().commit();
+        newArticle.getProperties().add(new ArticleProperty());
 
+        return null;
     }
 
+    public ArticleBean getNewArticle() {
+        return newArticle;
+    }
 
+    public void setNewArticle(ArticleBean newArticle) {
+        this.newArticle = newArticle;
+    }
 }
