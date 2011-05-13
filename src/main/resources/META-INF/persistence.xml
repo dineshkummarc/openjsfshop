@@ -9,7 +9,7 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.connection.url"
-                      value="jdbc:mysql://ec2-46-137-99-122.eu-west-1.compute.amazonaws.com:3092/openjsfshop"/>
+                      value="jdbc:mysql://192.168.0.117:3306/openjsfshop"/>
             <property name="hibernate.connection.username" value="openjsfshop"/>
             <property name="hibernate.connection.password" value="start123"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

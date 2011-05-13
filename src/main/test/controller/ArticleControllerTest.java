@@ -1,15 +1,13 @@
 package controller;
 
+import com.openshop.beans.ArticleSearchBean;
+import com.openshop.dao.ArticleDao;
 import com.openshop.entities.ArticleBean;
 import com.openshop.entities.ArticleProperty;
 import org.apache.log4j.Logger;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,62 +17,57 @@ public class ArticleControllerTest {
 
     private Logger logger = Logger.getLogger(ArticleControllerTest.class);
 
-    private EntityManagerFactory emf;
-    private EntityManager em;
-    private String PERSISTENCE_UNIT_NAME = "openjsfdb";
+    private ArticleDao articleDao;
 
     @Before
     public void before() {
 
-        emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        em = emf.createEntityManager();
+        articleDao = new ArticleDao();
+        ArticleBean bean = new ArticleBean("Coffee Cup", "Bring me some coffee here!");
+        bean.setArticleNumber(1234L);
 
-        em.getTransaction().begin();
-        ArticleBean bean = new ArticleBean("Sneakers Shoes", "Beatiful lightweight Shoes for young people");
-        em.persist(bean);
+        articleDao.insertArticle(bean);
 
-        List<ArticleProperty> props = new ArrayList<ArticleProperty>();
+        ArticleBean articleWithProps = new ArticleBean("Sneakers Shoes", "Beatiful lightweight Shoes for young people");
+        articleWithProps.setArticleNumber(2341L);
 
+        List<ArticleProperty> propertyList = new ArrayList<ArticleProperty>();
         ArticleProperty test1 = new ArticleProperty("color", "red");
         test1.setSpecialPrice(14.23);
-        test1.setProperty(bean);
+        propertyList.add(test1);
+
         ArticleProperty test2 = new ArticleProperty("color", "green");
         test2.setSpecialPrice(13.42);
-        test2.setProperty(bean);
-        em.persist(test1);
-        em.persist(test2);
+        propertyList.add(test2);
 
-        bean.getProperties().add(test1);
-        bean.getProperties().add(test2);
-        em.persist(bean);
 
-        em.getTransaction().commit();
-    }
-
-    @Test
-    public void checkInputs() {
-
-        List<ArticleBean> articles = em.createQuery("select a from ArticleBean a where a.articleId = 1").getResultList();
-
-        assertTrue(articles.size() == 1);
-        assertTrue(articles.get(0).getProperties().size() != 0);
-
-        System.out.println(articles.get(0).getProperties().size());
-
-        assertTrue(articles.get(0).getProperties().get(0).getValue1().equals("color"));
-
+        articleDao.insertArticleWithProperties(articleWithProps, propertyList);
 
     }
 
     @Test
-    public void selectByProperty() {
+    public void selectArticleList() {
+
+        List<ArticleBean> articles = articleDao.getArticlesList(new ArticleSearchBean());
+
+        assertTrue(articles.size() == 2);
 
     }
 
-    @After
-    public void closeAll() {
-        em.close();
+    @Test
+    public void selectArticlesByTitle() {
+        ArticleSearchBean searchBean = new ArticleSearchBean();
+        searchBean.setTxtArticleTitle("Sneakers Shoes");
+
+        List<ArticleBean> articles = articleDao.getArticlesList(searchBean);
+
+        assertTrue(articles.get(0).getTitle().equals("Sneakers Shoes"));
     }
 
+    @Test
+    public void selectArticleByArticleNo() {
+        ArticleBean article = articleDao.getArticleByArticleNumber(2341L);
+        assertTrue(article.getTitle().equals("Sneakers Shoes"));
+    }
 
 }
