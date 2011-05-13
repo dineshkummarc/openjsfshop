@@ -1,22 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  User: Promichel
-  Date: 13.05.11
-  Time: 13:34
--->
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.prime.com.tr/ui"
+        template="inc/template.xhtml">
+    <ui:define name="title">#{msg.articleManagerTitle}</ui:define>
 
-<h:head>
-    <title>Simple JSF Facelets page</title>
-</h:head>
+    <ui:define name="content">
+        <div id="articleBox">
+            <h1>Add New Article</h1>
 
-<h:body>
-    Place your content here
-</h:body>
+            <h:form id="newArticleForm">
+                <h:outputText value="Article Number:"/>
+                <h:inputText value="#{newArticleController.newArticle.articleNumber}"/>
+                <h:outputText value="Article Title:"/>
+                <h:inputText value="#{newArticleController.newArticle.title}"/>
+                <h:outputText value="Article Description:"/>
+                <h:inputTextarea value="#{newArticleController.newArticle.description}"/>
+                <br/><br/>
+                <h:outputText value="Article Price:"/>
+                <h:inputText/>
+                <h:outputText value="Article Amount: "/>
+                <h:inputText/>
 
-</html>
+                <br/>
+                <br/>
+
+                <!-- Property Settings -->
+                <div id="addProperties">
+                    <p:commandLink value="Add Property" update="propertyTable"
+                                   action="#{newArticleController.newProperty}"/>
+                    <p:dataTable id="propertyTable" value="#{newArticleController.newArticle.properties}" var="data">
+                        <p:column headerText="Property Type">
+                            <h:inputText value="#{data.value1}"/>
+                        </p:column>
+                        <p:column headerText="Property Value">
+                            <h:inputText value="#{data.value2}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+                <!-- Add Article -->
+                <p:commandButton value="Add Article" action="#{newArticleController.addArticle}"/>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
