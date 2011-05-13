@@ -76,6 +76,7 @@ public class ArticleController {
 
         };
 
+        articleTable.setPageSize(10);
         articleTable.setRowCount(articleDao.countArticlesBySearchBean(searchBean).intValue());
 
     }

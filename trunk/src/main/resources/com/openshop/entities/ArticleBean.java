@@ -1,5 +1,7 @@
 package com.openshop.entities;
 
+import org.hibernate.annotations.Index;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,8 @@ public class ArticleBean {
     private String title;
     private String description;
     private Long articleNumber;
+    private Double price;
+    private Integer amount;
 
     /**
      * Constructor
@@ -63,6 +67,22 @@ public class ArticleBean {
 
     public Long getArticleNumber() {
         return articleNumber;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
     public void setArticleNumber(Long articleNumber) {
