@@ -17,6 +17,7 @@ public class ArticleBean {
 
     private String title;
     private String description;
+    private Long articleNumber;
 
     /**
      * Constructor
@@ -25,6 +26,12 @@ public class ArticleBean {
 
     }
 
+    /**
+     * Creates a new article with Title and Description
+     *
+     * @param title       Title of the article
+     * @param description Description of the article
+     */
     public ArticleBean(String title, String description) {
         this.title = title;
         this.description = description;
@@ -52,6 +59,14 @@ public class ArticleBean {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getArticleNumber() {
+        return articleNumber;
+    }
+
+    public void setArticleNumber(Long articleNumber) {
+        this.articleNumber = articleNumber;
     }
 
     public List<ArticleProperty> getProperties() {
