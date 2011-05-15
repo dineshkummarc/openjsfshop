@@ -174,6 +174,7 @@ public class ArticleDao implements IDatabaseController {
         EntityManager em = startConnection();
 
         try {
+            //Start Transaction
             logger.debug("Get Transaction");
             em.getTransaction().begin();
 
@@ -209,6 +210,7 @@ public class ArticleDao implements IDatabaseController {
         EntityManager em = startConnection();
 
         try {
+            //Start Transaction
             em.getTransaction().begin();
 
             logger.debug("Get ArticleBean to remove");
@@ -239,6 +241,7 @@ public class ArticleDao implements IDatabaseController {
         EntityManager em = startConnection();
 
         try {
+            //Start Transaction
             em.getTransaction().begin();
 
             logger.debug("Get ArticleBean to update");
@@ -258,6 +261,12 @@ public class ArticleDao implements IDatabaseController {
 
     }
 
+    /**
+     * Counts available Articles after selecting with given SearchBean
+     *
+     * @param searchBean Filter SearchBean
+     * @return Long count(availableArticles)
+     */
     public Long countArticlesBySearchBean(ArticleSearchBean searchBean) {
 
         logger.debug("Get Entity Manager");
