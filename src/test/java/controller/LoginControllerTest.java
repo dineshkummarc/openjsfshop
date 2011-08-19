@@ -1,9 +1,9 @@
 package controller;
 
 
-import openshop.controller.admincp.LoginController;
-import openshop.entities.UserBean;
-import openshop.util.MD5;
+import com.openshop.controller.admincp.LoginController;
+import com.openshop.entities.UserBean;
+import com.openshop.util.MD5;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;

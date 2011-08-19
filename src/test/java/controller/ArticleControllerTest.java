@@ -1,9 +1,9 @@
 package controller;
 
-import openshop.beans.ArticleSearchBean;
-import openshop.dao.ArticleDao;
-import openshop.entities.ArticleBean;
-import openshop.entities.ArticleProperty;
+import com.openshop.beans.ArticleSearchBean;
+import com.openshop.dao.ArticleDao;
+import com.openshop.entities.ArticleBean;
+import com.openshop.entities.ArticleProperty;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;

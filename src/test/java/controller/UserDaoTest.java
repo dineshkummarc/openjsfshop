@@ -1,9 +1,9 @@
 package controller;
 
-import openshop.beans.UserLevel;
-import openshop.beans.UserSearchBean;
-import openshop.dao.UserDao;
-import openshop.entities.UserBean;
+import com.openshop.beans.UserLevel;
+import com.openshop.beans.UserSearchBean;
+import com.openshop.dao.UserDao;
+import com.openshop.entities.UserBean;
 import org.junit.Before;
 import org.junit.Test;
 
