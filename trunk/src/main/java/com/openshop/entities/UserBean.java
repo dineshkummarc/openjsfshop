@@ -17,7 +17,7 @@ public class UserBean {
 
     private String email;
     private String password;
-    private String prename;
+    private String firstName;
     private String surname;
     private String street;
     private Integer streetNumber;
@@ -50,12 +50,12 @@ public class UserBean {
         this.password = password;
     }
 
-    public String getPrename() {
-        return prename;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPrename(String prename) {
-        this.prename = prename;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getSurname() {

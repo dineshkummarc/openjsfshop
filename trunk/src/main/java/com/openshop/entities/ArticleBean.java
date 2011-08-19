@@ -1,7 +1,5 @@
 package com.openshop.entities;
 
-import org.hibernate.annotations.Index;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
