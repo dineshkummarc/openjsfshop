@@ -8,6 +8,25 @@
     <name>OpenJSFShop</name>
     <url>http://code.google.com/p/openjsfshop</url>
 
+    <build>
+        <finalName>OpenJSFShop</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.xsd</include>
+                    <include>**/*.dtd</include>
+                </includes>
+                <excludes>
+                    <exclude>**/.scc</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
+
     <properties>
         <spring-version>3.0.5.RELEASE</spring-version>
         <springsecurity-version>3.0.5.RELEASE</springsecurity-version>
@@ -144,9 +163,5 @@
         </dependency>
 
     </dependencies>
-
-    <build>
-        <finalName>OpenJSFShop</finalName>
-    </build>
 
 </project>

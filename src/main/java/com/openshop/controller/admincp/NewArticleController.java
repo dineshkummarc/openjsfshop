@@ -5,6 +5,7 @@ import com.openshop.entities.ArticleBean;
 import com.openshop.entities.ArticleProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -16,6 +17,8 @@ import java.util.List;
 public class NewArticleController {
 
     private Logger logger = LoggerFactory.getLogger(NewArticleController.class);
+
+    @Autowired
     private ArticleDao articleDao;
 
     private ArticleBean newArticle;
@@ -25,7 +28,6 @@ public class NewArticleController {
      * Constructor
      */
     public NewArticleController() {
-        articleDao = new ArticleDao();
         newArticle = new ArticleBean();
         newProperties = new ArrayList<ArticleProperty>();
     }

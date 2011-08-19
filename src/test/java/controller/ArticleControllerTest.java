@@ -7,22 +7,30 @@ import com.openshop.entities.ArticleProperty;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"classpath:applicationContext-jpa.xml"})
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 public class ArticleControllerTest {
 
     private Logger logger = Logger.getLogger(ArticleControllerTest.class);
 
+    @Autowired
     private ArticleDao articleDao;
 
     @Before
     public void before() {
 
-        articleDao = new ArticleDao();
         ArticleBean bean = new ArticleBean("Coffee Cup", "Bring me some coffee here!");
         bean.setArticleNumber(1234L);
 
