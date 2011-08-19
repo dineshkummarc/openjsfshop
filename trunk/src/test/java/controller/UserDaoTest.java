@@ -6,6 +6,11 @@ import com.openshop.dao.UserDao;
 import com.openshop.entities.UserBean;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import java.util.List;
 
@@ -18,25 +23,28 @@ import static org.junit.Assert.assertTrue;
  * Time: 18:03
  * Contact & Support: http://sharea.de
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"classpath:applicationContext-jpa.xml"})
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 public class UserDaoTest {
 
+    @Autowired
     private UserDao userDao;
 
     @Before
     public void setUp() {
-        userDao = new UserDao();
 
         UserBean newUser = new UserBean();
         newUser.setLevel(UserLevel.USER);
         newUser.setEmail("patrick@sharea.de");
         newUser.setPassword("start123");
-        newUser.setPrename("Patrick");
+        newUser.setFirstName("Patrick");
         newUser.setSurname("T.");
 
         userDao.addUser(newUser);
 
         newUser = new UserBean();
-        newUser.setPrename("Patrick");
+        newUser.setFirstName("Patrick");
 
         userDao.addUser(newUser);
     }
@@ -46,7 +54,7 @@ public class UserDaoTest {
 
         UserBean user = userDao.selectUserByEMail("patrick@sharea.de");
 
-        assertTrue(user.getPrename().equals("Patrick"));
+        assertTrue(user.getFirstName().equals("Patrick"));
 
     }
 

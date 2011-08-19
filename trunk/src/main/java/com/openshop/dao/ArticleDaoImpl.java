@@ -12,6 +12,7 @@ import com.openshop.entities.ArticleBean;
 import com.openshop.entities.ArticleProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 /**
  * Database Access Object for Articles
  */
+@Repository("articleDao")
 public class ArticleDaoImpl extends AbstractDaoImpl implements ArticleDao {
 
     private final Logger logger = LoggerFactory.getLogger(ArticleDaoImpl.class);

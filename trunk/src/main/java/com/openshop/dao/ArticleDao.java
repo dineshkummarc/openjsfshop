@@ -26,4 +26,6 @@ public interface ArticleDao {
     public void updateArticle(ArticleBean bean);
 
     public Long countArticlesBySearchBean(ArticleSearchBean searchBean);
+
+    public void removeArticle(ArticleBean bean);
 }

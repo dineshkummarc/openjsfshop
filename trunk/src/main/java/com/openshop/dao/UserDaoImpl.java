@@ -3,6 +3,7 @@ package com.openshop.dao;
 import com.openshop.beans.UserSearchBean;
 import com.openshop.entities.UserBean;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * Time: 18:01
  * Contact & Support: http://sharea.de
  */
+@Repository("userDao")
 public class UserDaoImpl extends AbstractDaoImpl implements UserDao {
 
     private final Logger logger = org.slf4j.LoggerFactory.getLogger(UserDaoImpl.class);

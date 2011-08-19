@@ -8,6 +8,7 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
@@ -25,14 +26,14 @@ public class ArticleController {
     private LazyDataModel articleTable;
 
     //Database
-    private final ArticleDao articleDao;
+    @Autowired
+    private ArticleDao articleDao;
 
     /**
      * Constructor
      */
     public ArticleController() {
         searchBean = new ArticleSearchBean();
-        articleDao = new ArticleDao();
     }
 
     /**
