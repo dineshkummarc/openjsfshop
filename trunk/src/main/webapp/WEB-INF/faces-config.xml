@@ -14,7 +14,7 @@
         </locale-config>
 
         <message-bundle>
-            com.openshop.locale
+            com.com.openshop.locale
         </message-bundle>
 
     </application>
