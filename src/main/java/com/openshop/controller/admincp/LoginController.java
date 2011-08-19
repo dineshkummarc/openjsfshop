@@ -12,18 +12,18 @@ import javax.persistence.Query;
 @ManagedBean
 public class LoginController {
 
-    private Logger logger = Logger.getLogger(LoginController.class);
+    private final Logger logger = Logger.getLogger(LoginController.class);
 
-    private EntityManagerFactory emf;
-    private EntityManager em;
-    private String PERSISTENCE_UNIT_NAME = "openjsfdb";
+    private final EntityManager em;
 
     /**
      * Constructor
      */
     public LoginController() {
 
-        emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        logger.debug("Started LoginController");
+        String PERSISTENCE_UNIT_NAME = "openjsfdb";
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = emf.createEntityManager();
 
     }
@@ -35,7 +35,8 @@ public class LoginController {
      */
     public String buttonLogIn() {
 
-
+        //Login Button got clicked
+        logger.debug("Login Button clicked");
         return null;
     }
 
@@ -52,12 +53,16 @@ public class LoginController {
      */
     public boolean checkLogin(String email, String password) {
 
+        //create query
+        logger.debug("Query user from database");
         Query emQuery = em.createQuery("select u from UserBean u where u.email = :email and u.password = MD5(:password)");
         emQuery.setParameter("email", email);
         emQuery.setParameter("password", password);
 
+        //Select the user from database
         UserBean user = (UserBean) emQuery.getSingleResult();
 
+        //if selected equals database email = success
         return (user.getEmail().equals(email));
     }
 
